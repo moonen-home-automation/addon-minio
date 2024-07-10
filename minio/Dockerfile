@@ -8,17 +8,13 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3008
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install wget -y
-
-RUN wget --progress=dot:giga https://dl.min.io/server/minio/release/linux-amd64/minio_20240704142545.0.0_amd64.deb && \
+    apt-get install wget -y && \
+    wget --progress=dot:giga https://dl.min.io/server/minio/release/linux-amd64/minio_20240704142545.0.0_amd64.deb && \
     dpkg -i minio_20240704142545.0.0_amd64.deb && \
     groupadd -r minio-user && \
     useradd -M -r -g minio-user minio-user && \
     mkdir /data && \
     chown minio-user:minio-user /data
-
-RUN wget --progress=dot:giga https://github.com/minio/certgen/releases/download/v1.3.0/certgen_1.3.0_linux_amd64.deb && \
-    dpkg -i certgen_1.3.0_linux_amd64.deb
 
 ENV MINIO_ROOT_USER=admin
 ENV MINIO_ROOT_PASSWORD=password
