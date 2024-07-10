@@ -9,8 +9,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install wget -y && \
-    wget --progress=dot:giga https://dl.min.io/server/minio/release/linux-amd64/minio_20240704142545.0.0_amd64.deb && \
-    dpkg -i minio_20240704142545.0.0_amd64.deb && \
+    wget --progress=dot:giga https://dl.min.io/server/minio/release/linux-amd64/minio_20240710184149.0.0_amd64.deb && \
+    dpkg -i minio_20240710184149.0.0_amd64.deb && \
     groupadd -r minio-user && \
     useradd -M -r -g minio-user minio-user && \
     mkdir /data && \
