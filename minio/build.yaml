@@ -1,0 +1,6 @@
+---
+build_from:
+  amd64: ghcr.io/hassio-addons/ubuntu-base:10.0.1
+codenotary:
+  base_image: rick@moonen.network
+  signer: rick@moonen.network
