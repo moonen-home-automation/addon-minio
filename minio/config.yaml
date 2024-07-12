@@ -19,8 +19,8 @@ ports_description:
   9000/tcp: API
   9001/tcp: WebUI
 options:
-  user: 'root'
-  password: 'password'
+  user: "root"
+  password: "password"
   envvars: []
 schema:
   user: str
