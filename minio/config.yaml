@@ -19,3 +19,13 @@ ports:
 ports_description:
   9000/tcp: API
   9001/tcp: WebUI
+options:
+  user: 'root'
+  password: 'password'
+  envvars: []
+schema:
+  user: str
+  password: password
+  envvars:
+    - name: match(^MINIO_([A-Z0-9_])+$)
+      value: str
