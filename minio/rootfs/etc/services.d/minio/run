@@ -18,6 +18,9 @@ done
 user=$(bashio::config 'user')
 password=$(bashio::config 'password')
 
+export "MINIO_ROOT_USER=${user}"
+export "MINIO_ROOT_PASSWORD=${password}"
+
 bashio::log.info 'Starting MinIO...'
 
 # Run MinIO

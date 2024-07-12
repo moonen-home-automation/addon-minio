@@ -7,7 +7,6 @@ url: https://github.com/moonen-home-automation/addon-minio
 codenotary: rick@moonen.network
 ingress: true
 ingress_port: 9001
-ingress_stream: true
 panel_icon: mdi:database
 startup: services
 arch:
@@ -20,8 +19,8 @@ ports_description:
   9000/tcp: API
   9001/tcp: WebUI
 options:
-  user: "root"
-  password: "password"
+  user: 'root'
+  password: 'password'
   envvars: []
 schema:
   user: str
