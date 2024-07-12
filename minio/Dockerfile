@@ -5,13 +5,6 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# hadolint ignore=DL3008
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install wget -y && \
-    wget --progress=dot:giga https://dl.min.io/server/minio/release/linux-amd64/minio_20240710184149.0.0_amd64.deb && \
-    dpkg -i minio_20240710184149.0.0_amd64.deb
-
 ARG BUILD_ARCH=amd64
 RUN \
     apt-get update \
@@ -20,7 +13,7 @@ RUN \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then ARCH="arm64"; fi \
     \
     && curl -J -L -o /tmp/minio.deb \
-    https://dl.min.io/server/minio/release/linux-amd64/minio_20240710184149.0.0_${BUILD_ARCH}.deb \
+    https://dl.min.io/server/minio/release/linux-amd64/minio_20240710184149.0.0_${ARCH}.deb \
     \
     && dpkg --install /tmp/minio.deb \
     \
@@ -40,7 +33,6 @@ EXPOSE 9000
 COPY rootfs /
 
 # Build arguments
-ARG BUILD_ARCH
 ARG BUILD_DATE
 ARG BUILD_DESCRIPTION
 ARG BUILD_NAME
