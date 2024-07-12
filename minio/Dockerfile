@@ -5,6 +5,9 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# Copy root filesystem
+COPY rootfs /
+
 ARG BUILD_ARCH=amd64
 RUN \
     apt-get update \
@@ -17,20 +20,10 @@ RUN \
     \
     && dpkg --install /tmp/minio.deb \
     \
-    && rm -fr \
-    /tmp/* \
-    /etc/nginx \
-    /var/{cache,log}/* \
-    /var/lib/apt/lists/* \
-    \
-    && mkdir -p /var/log/nginx \
-    && touch /var/log/nginx/error.log
+    && chmod 777 -R /etc/services.d
 
 EXPOSE 9001
 EXPOSE 9000
-
-# Copy root filesystem
-COPY rootfs /
 
 # Build arguments
 ARG BUILD_DATE
